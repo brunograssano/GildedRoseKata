@@ -172,4 +172,54 @@ class GildedRoseTest {
 		assertEquals(0,app.items[0].quality,"The quality of the conjured item is still 0 after an update");
 	}
 
+
+	@Test
+	public void everyItemShouldHaveTheExpectedQualityAfterFiveUpdates19() {
+		Item[] items = new Item[] {
+				new Item(CONJURED, 6, 11),
+				new Item(SULFURAS, 6, 80),
+				new Item(AGED_BRIE, 6, 35),
+				new Item(NORMAL_ITEM, 6, 12),
+				new Item(BACKSTAGE, 7, 21)
+		};
+
+
+		GildedRose app = new GildedRose(items);
+		for (int i = 0; i < 5 ; i++) {
+			app.updateQuality();
+		}
+
+		assertEquals(1,app.items[0].quality,"The quality of the conjured item should be 1");
+		assertEquals(80,app.items[1].quality,"The quality of sulfuras is always 80");
+		assertEquals(6,app.items[1].sellIn,"The sell in value of sulfuras is the same as the start");
+		assertEquals(40,app.items[2].quality,"The quality of the aged brie is 40");
+		assertEquals(7,app.items[3].quality,"The quality of the normal item is 7");
+		assertEquals(35,app.items[4].quality,"The quality of the backstage item is 35");
+	}
+
+
+	@Test
+	public void everyItemShouldHaveTheExpectedQualityAfterSixUpdates20() {
+		Item[] items = new Item[] {
+				new Item(CONJURED, 3, 11),
+				new Item(SULFURAS, 3, 80),
+				new Item(AGED_BRIE, 3, 35),
+				new Item(NORMAL_ITEM, 3, 12),
+				new Item(BACKSTAGE, 4, 21)
+		};
+
+
+		GildedRose app = new GildedRose(items);
+		for (int i = 0; i < 6 ; i++) {
+			app.updateQuality();
+		}
+
+		assertEquals(0,app.items[0].quality,"The quality of the conjured item should be 0");
+		assertEquals(80,app.items[1].quality,"The quality of sulfuras is always 80");
+		assertEquals(3,app.items[1].sellIn,"The sell in value of sulfuras is the same as the start");
+		assertEquals(44,app.items[2].quality,"The quality of the aged brie is 44");
+		assertEquals(3,app.items[3].quality,"The quality of the normal item is 3");
+		assertEquals(0,app.items[4].quality,"The quality of the backstage item is 0");
+	}
+
 }
