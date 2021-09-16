@@ -15,6 +15,8 @@ public class ItemUpdaterFactory {
 
         switch (item.Name){
             case AGED_BRIE:
+                itemUpdater = new AgedBrieUpdater(item);
+                break;
             case BACKSTAGE:
             case SULFURAS:
                 itemUpdater = new NoUpdater();
