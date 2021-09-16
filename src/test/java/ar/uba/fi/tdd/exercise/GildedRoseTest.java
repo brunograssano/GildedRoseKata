@@ -12,6 +12,7 @@ class GildedRoseTest {
 	static final String AGED_BRIE = "Aged Brie";
 	static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
 	static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+	static final String CONJURED = "Conjured";
 
 	@Test
 	public void atTheEndOfADayTheSellinAndQualityValuesDecreasesInARegularItem01() {
@@ -126,6 +127,49 @@ class GildedRoseTest {
 		app.updateQuality();
 		assertEquals(0,app.items[0].quality,"The quality after the concert is 0");
 		assertEquals(-1,app.items[0].sellIn,"The backstage sell by date expired");
+	}
+
+	@Test
+	public void aConjuredItemDegradesTwiceAsFastAsANormalItemAfterAnUpdate14() {
+		Item[] items = new Item[] { new Item(CONJURED, 10, 10) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(8,app.items[0].quality,"The quality after an update in a conjured item decreases by 2");
+		assertEquals(4,app.items[0].sellIn,"The sell by value decreases by 1 in a conjured item");
+	}
+
+	@Test
+	public void aConjuredItemDegradesTwiceAsFastAsANormalItemWhileExpiredAfterAnUpdate15() {
+		Item[] items = new Item[] { new Item(CONJURED, 0, 10) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(6,app.items[0].quality,"The quality after an update in a conjured item decreases by 4");
+		assertEquals(-1,app.items[0].sellIn,"The conjured item expired");
+	}
+
+	@Test
+	public void theMinimumQualityOfAConjuredItemIsZero16() {
+		Item[] items = new Item[] { new Item(CONJURED, 1, 1) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(0,app.items[0].quality,"The minimum quality of a conjured item is 0");
+	}
+
+	@Test
+	public void theMinimumQualityOfAConjuredItemIsZeroAfterExpiring17() {
+		Item[] items = new Item[] { new Item(CONJURED, 0, 1) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(0,app.items[0].quality,"The minimum quality of a conjured item is 0");
+		assertEquals(-1,app.items[0].sellIn,"The conjured item expired");
+	}
+
+	@Test
+	public void ifTheQualityWasZeroItStillIsAfterAnUpdate18() {
+		Item[] items = new Item[] { new Item(CONJURED, 5, 0) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(0,app.items[0].quality,"The quality of the conjured item is still 0 after an update");
 	}
 
 }
