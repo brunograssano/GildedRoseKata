@@ -3,7 +3,7 @@ package ar.uba.fi.tdd.exercise.expirations;
 import ar.uba.fi.tdd.exercise.Item;
 import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
-public class BackStageExpirationState implements ExpirationState {
+public class BackStageNormalState implements ExpirationState {
 
     static final int TEN_DAYS_TO_CONCERT = 10;
     static final int FIVE_DAYS_TO_CONCERT = 5;
