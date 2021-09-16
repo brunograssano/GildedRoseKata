@@ -18,6 +18,8 @@ public class ItemUpdaterFactory {
                 itemUpdater = new AgedBrieUpdater(item);
                 break;
             case BACKSTAGE:
+                itemUpdater = new BackstageUpdater(item);
+                break;
             case SULFURAS:
                 itemUpdater = new NoUpdater();
                 break;
