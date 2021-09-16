@@ -6,10 +6,11 @@ import ar.uba.fi.tdd.exercise.qualities.QualityState;
 public class EadibleState implements ExpirationState {
 
     static final int NORMAL_QUALITY_CHANGE = 1;
+    static final int DEADLINE = 0;
 
     public ExpirationState updateDay(Item item){
         item.sellIn--;
-        if(item.sellIn<0){
+        if(item.sellIn < DEADLINE){
             return new NormalExpiredState();
         }
         return this;

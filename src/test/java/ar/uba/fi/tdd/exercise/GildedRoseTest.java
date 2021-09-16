@@ -8,9 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class GildedRoseTest {
 
+	static final String NORMAL_ITEM = "Tasty Mawshroom";
+	static final String AGED_BRIE = "Aged Brie";
+	static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+	static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
 	@Test
 	public void atTheEndOfADayTheSellinAndQualityValuesDecreasesInARegularItem01() {
-		Item[] items = new Item[] { new Item("Tasty Mawshroom", 5, 5) };
+		Item[] items = new Item[] { new Item(NORMAL_ITEM, 5, 5) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(4,app.items[0].quality,"The quality value of a normal item decreases after an update");
@@ -19,7 +24,7 @@ class GildedRoseTest {
 
 	@Test
 	public void ifTheSellByDatePassedTheQualityValueDecreasesTwiceAsFastInARegularItem02() {
-		Item[] items = new Item[] { new Item("Tasty Mawshroom", 0, 5) };
+		Item[] items = new Item[] { new Item(NORMAL_ITEM, 0, 5) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(3,app.items[0].quality,"The quality value of a normal item decreases twice as fast if the sell by date passes after an update");
@@ -28,7 +33,7 @@ class GildedRoseTest {
 
 	@Test
 	public void theQualityOfAnItemCannotBeNegative03() {
-		Item[] items = new Item[] { new Item("Tasty Mawshroom", 5, 0) };
+		Item[] items = new Item[] { new Item(NORMAL_ITEM, 5, 0) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(0,app.items[0].quality,"The quality value of a normal item cannot be negative");
@@ -37,7 +42,7 @@ class GildedRoseTest {
 
 	@Test
 	public void theQualityOfAnItemThatHasExpiredCannotBeNegative04() {
-		Item[] items = new Item[] { new Item("Tasty Mawshroom", 0, 0) };
+		Item[] items = new Item[] { new Item(NORMAL_ITEM, 0, 0) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(0,app.items[0].quality,"The quality value of a normal item that expired cannot be negative");
@@ -46,7 +51,7 @@ class GildedRoseTest {
 
 	@Test
 	public void agedBrieIncreasesInQualityTheOlderItGets05() {
-		Item[] items = new Item[] { new Item("Aged Brie", 5, 10) };
+		Item[] items = new Item[] { new Item(AGED_BRIE, 5, 10) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(11,app.items[0].quality,"The quality value of aged brie increases after an update");
@@ -55,7 +60,7 @@ class GildedRoseTest {
 
 	@Test
 	public void agedBrieIncreasesItsQualityByTwoAfterItExpires06() {
-		Item[] items = new Item[] { new Item("Aged Brie", 0, 10) };
+		Item[] items = new Item[] { new Item(AGED_BRIE, 0, 10) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(12,app.items[0].quality,"The quality value of aged brie increases twice as fast after an update");
@@ -64,7 +69,7 @@ class GildedRoseTest {
 
 	@Test
 	public void theQualityOfAgedBrieIsNeverMoreThanFifty07() {
-		Item[] items = new Item[] { new Item("Aged Brie", 1, 50) };
+		Item[] items = new Item[] { new Item(AGED_BRIE, 1, 50) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(50,app.items[0].quality,"The quality value of aged brie is never more than 50");
@@ -73,7 +78,7 @@ class GildedRoseTest {
 
 	@Test
 	public void theQualityOfAgedBrieIsNeverMoreThanFiftyAfterExpiring08() {
-		Item[] items = new Item[] { new Item("Aged Brie", 0, 50) };
+		Item[] items = new Item[] { new Item(AGED_BRIE, 0, 50) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(50,app.items[0].quality,"The quality value of aged brie is never more than 50 after expiring");
@@ -82,7 +87,7 @@ class GildedRoseTest {
 
 	@Test
 	public void sulfurasHasTheSameSellInAndQualityValuesAfterAnUpdate09() {
-		Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 5, 80) };
+		Item[] items = new Item[] { new Item(SULFURAS, 5, 80) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(80,app.items[0].quality,"The quality of sulfuras is still 80 after an update");
@@ -91,7 +96,7 @@ class GildedRoseTest {
 
 	@Test
 	public void sulfurasHasTheSameSellInAndQualityValuesAfterAnUpdate10() {
-		Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 5, 80) };
+		Item[] items = new Item[] { new Item(SULFURAS, 5, 80) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(80,app.items[0].quality,"The quality of sulfuras is still 80 after an update");
@@ -100,7 +105,7 @@ class GildedRoseTest {
 
 	@Test
 	public void backstageItemsIncreaseInQualityBy2WhenThereAre10DaysOrLessForTheConcert11() {
-		Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 7, 10) };
+		Item[] items = new Item[] { new Item(BACKSTAGE, 7, 10) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(12,app.items[0].quality,"The quality of a backstage item increases by 2 when there are 10 days or less for the concert");
@@ -108,7 +113,7 @@ class GildedRoseTest {
 
 	@Test
 	public void backstageItemsIncreaseInQualityBy3WhenThereAre5DaysOrLessForTheConcert12() {
-		Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10) };
+		Item[] items = new Item[] { new Item(BACKSTAGE, 5, 10) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(13,app.items[0].quality,"The quality of a backstage item increases by 3 when there are 5 days or less for the concert");
@@ -116,7 +121,7 @@ class GildedRoseTest {
 
 	@Test
 	public void theQualityOfBackstageItemsDecreasesTo0AfterTheConcert13() {
-		Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
+		Item[] items = new Item[] { new Item(BACKSTAGE, 0, 10) };
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(0,app.items[0].quality,"The quality after the concert is 0");

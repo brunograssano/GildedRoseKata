@@ -12,10 +12,12 @@ public class BackStageExpirationState implements ExpirationState {
     static final int TEN_DAYS_MODIFIER = 2;
     static final int FIVE_DAYS_MODIFIER = 3;
 
+    static final int DEADLINE = 0;
+
     @Override
     public ExpirationState updateDay(Item item) {
         item.sellIn--;
-        if(item.sellIn<0){
+        if(item.sellIn < DEADLINE){
             return new BackStageExpiredState();
         }
         return this;
