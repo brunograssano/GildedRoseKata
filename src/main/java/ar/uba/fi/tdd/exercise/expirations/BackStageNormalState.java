@@ -5,8 +5,8 @@ import ar.uba.fi.tdd.exercise.qualities.IncreasingQualityState;
 
 public class BackStageNormalState extends ExpirationState {
 
-    static final int TEN_DAYS_TO_CONCERT = 10;
-    static final int FIVE_DAYS_TO_CONCERT = 5;
+    static final int TEN_DAYS_TO_CONCERT = 9;
+    static final int FIVE_DAYS_TO_CONCERT = 4;
 
     static final int NORMAL_MODIFIER = 1;
     static final int TEN_DAYS_MODIFIER = 2;

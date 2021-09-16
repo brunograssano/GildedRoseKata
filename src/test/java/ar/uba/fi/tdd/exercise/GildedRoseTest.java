@@ -194,7 +194,7 @@ class GildedRoseTest {
 		assertEquals(6,app.items[1].sellIn,"The sell in value of sulfuras is the same as the start");
 		assertEquals(40,app.items[2].quality,"The quality of the aged brie is 40");
 		assertEquals(7,app.items[3].quality,"The quality of the normal item is 7");
-		assertEquals(35,app.items[4].quality,"The quality of the backstage item is 35");
+		assertEquals(34,app.items[4].quality,"The quality of the backstage item is 34");
 	}
 
 
@@ -220,6 +220,38 @@ class GildedRoseTest {
 		assertEquals(44,app.items[2].quality,"The quality of the aged brie is 44");
 		assertEquals(3,app.items[3].quality,"The quality of the normal item is 3");
 		assertEquals(0,app.items[4].quality,"The quality of the backstage item is 0");
+	}
+
+	@Test
+	public void backstageItemsIncreaseInQualityBy3WhenThereAre5DaysOrLessForTheConcert21() {
+		Item[] items = new Item[] { new Item(BACKSTAGE, 4, 10) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(13,app.items[0].quality,"The quality of a backstage item increases by 3 when there are 4 days for the concert");
+	}
+
+	@Test
+	public void backstageItemsIncreaseInQualityBy3WhenThereAre5DaysOrLessForTheConcert22() {
+		Item[] items = new Item[] { new Item(BACKSTAGE, 1, 10) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(13,app.items[0].quality,"The quality of a backstage item increases by 3 when there 1 day for the concert");
+	}
+
+	@Test
+	public void backstageItemsIncreaseInQualityBy2WhenThereAre10DaysOrLessForTheConcert23() {
+		Item[] items = new Item[] { new Item(BACKSTAGE, 10, 10) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(12,app.items[0].quality,"The quality of a backstage item increases by 3 when there 1 day for the concert");
+	}
+
+	@Test
+	public void backstageItemsIncreaseInQualityBy1IfThereAreMoreThanTenDaysForTheConcert24() {
+		Item[] items = new Item[] { new Item(BACKSTAGE, 11, 10) };
+		GildedRose app = new GildedRose(items);
+		app.updateQuality();
+		assertEquals(11,app.items[0].quality,"The quality of a backstage item increases by 1 when there more than 10 days for the concert");
 	}
 
 }
