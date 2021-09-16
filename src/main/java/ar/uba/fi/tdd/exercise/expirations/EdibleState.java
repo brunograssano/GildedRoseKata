@@ -3,12 +3,12 @@ package ar.uba.fi.tdd.exercise.expirations;
 import ar.uba.fi.tdd.exercise.Item;
 import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
-public class EadibleState extends ExpirationState {
+public class EdibleState extends ExpirationState {
 
     static final int NORMAL_QUALITY_CHANGE = 1;
     static final int DEADLINE = 0;
 
-    public EadibleState(QualityState qualityState){
+    public EdibleState(QualityState qualityState){
         this.qualityState = qualityState;
     }
 
