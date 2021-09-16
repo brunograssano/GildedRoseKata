@@ -12,9 +12,4 @@ public class NormalUpdater extends ItemUpdater {
         this.qualityState = new DecreasingQualityState();
     }
 
-    public void update(){
-        expirationState = expirationState.updateDay(item);
-        qualityState = expirationState.updateQuality(item, qualityState);
-    }
-
 }

@@ -9,5 +9,8 @@ public abstract class ItemUpdater {
     protected ExpirationState expirationState;
     protected QualityState qualityState;
 
-    abstract void update();
+    void update() {
+        expirationState = expirationState.updateDay(item);
+        qualityState = expirationState.updateQuality(item, qualityState);
+    }
 }

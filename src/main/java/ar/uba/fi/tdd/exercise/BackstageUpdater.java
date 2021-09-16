@@ -10,9 +10,4 @@ public class BackstageUpdater extends ItemUpdater {
         this.qualityState = new IncreasingQualityState();
     }
 
-    @Override
-    void update() {
-        expirationState = expirationState.updateDay(item);
-        qualityState = expirationState.updateQuality(item, qualityState);
-    }
 }
