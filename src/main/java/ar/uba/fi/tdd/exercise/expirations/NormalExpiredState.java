@@ -5,7 +5,7 @@ import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
 public class NormalExpiredState implements ExpirationState {
 
-    static final int DEGRADATION_AFTER_EXPIRATION = 2;
+    static final int NORMAL_EXPIRED_EFFECT = 2;
 
     @Override
     public ExpirationState updateDay(Item item) {
@@ -15,6 +15,6 @@ public class NormalExpiredState implements ExpirationState {
 
     @Override
     public QualityState updateQuality(Item item, QualityState qualityState) {
-        return qualityState.updateQuality(item, DEGRADATION_AFTER_EXPIRATION);
+        return qualityState.updateQuality(item, NORMAL_EXPIRED_EFFECT);
     }
 }

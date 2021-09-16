@@ -5,7 +5,7 @@ import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
 public class EadibleState implements ExpirationState {
 
-    static final int NORMAL_QUALITY_LOSS = 1;
+    static final int NORMAL_QUALITY_CHANGE = 1;
 
     public ExpirationState updateDay(Item item){
         item.sellIn--;
@@ -17,7 +17,7 @@ public class EadibleState implements ExpirationState {
 
     @Override
     public QualityState updateQuality(Item item, QualityState qualityState) {
-        return qualityState.updateQuality(item, NORMAL_QUALITY_LOSS);
+        return qualityState.updateQuality(item, NORMAL_QUALITY_CHANGE);
     }
 
 
