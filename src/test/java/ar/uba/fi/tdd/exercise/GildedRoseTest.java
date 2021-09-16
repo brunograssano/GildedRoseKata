@@ -135,7 +135,7 @@ class GildedRoseTest {
 		GildedRose app = new GildedRose(items);
 		app.updateQuality();
 		assertEquals(8,app.items[0].quality,"The quality after an update in a conjured item decreases by 2");
-		assertEquals(4,app.items[0].sellIn,"The sell by value decreases by 1 in a conjured item");
+		assertEquals(9,app.items[0].sellIn,"The sell by value decreases by 1 in a conjured item");
 	}
 
 	@Test
