@@ -1,21 +1,22 @@
 package ar.uba.fi.tdd.exercise.expirations;
 
 import ar.uba.fi.tdd.exercise.Item;
-import ar.uba.fi.tdd.exercise.qualities.QualityState;
+import ar.uba.fi.tdd.exercise.qualities.ConstantQualityState;
 
-public class BackStageExpiredState implements ExpirationState {
+public class BackStageExpiredState extends ExpirationState {
 
     static final int MINIMUM_QUALITY = 0;
 
-    @Override
+    public BackStageExpiredState(){
+        this.qualityState = new ConstantQualityState();
+    }
+
     public ExpirationState updateDay(Item item) {
         item.sellIn--;
         return this;
     }
 
-    @Override
-    public QualityState updateQuality(Item item, QualityState qualityState) {
+    public void updateQuality(Item item) {
         item.quality = MINIMUM_QUALITY;
-        return qualityState;
     }
 }

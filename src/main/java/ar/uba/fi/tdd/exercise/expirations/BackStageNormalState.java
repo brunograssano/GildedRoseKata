@@ -1,9 +1,9 @@
 package ar.uba.fi.tdd.exercise.expirations;
 
 import ar.uba.fi.tdd.exercise.Item;
-import ar.uba.fi.tdd.exercise.qualities.QualityState;
+import ar.uba.fi.tdd.exercise.qualities.IncreasingQualityState;
 
-public class BackStageExpirationState implements ExpirationState {
+public class BackStageNormalState extends ExpirationState {
 
     static final int TEN_DAYS_TO_CONCERT = 10;
     static final int FIVE_DAYS_TO_CONCERT = 5;
@@ -14,7 +14,10 @@ public class BackStageExpirationState implements ExpirationState {
 
     static final int DEADLINE = 0;
 
-    @Override
+    public BackStageNormalState(){
+        this.qualityState = new IncreasingQualityState();
+    }
+
     public ExpirationState updateDay(Item item) {
         item.sellIn--;
         if(item.sellIn < DEADLINE){
@@ -23,8 +26,7 @@ public class BackStageExpirationState implements ExpirationState {
         return this;
     }
 
-    @Override
-    public QualityState updateQuality(Item item, QualityState qualityState) {
+    public void updateQuality(Item item) {
 
         int modifier = NORMAL_MODIFIER;
 
@@ -34,6 +36,6 @@ public class BackStageExpirationState implements ExpirationState {
             modifier = TEN_DAYS_MODIFIER;
         }
 
-        return qualityState.updateQuality(item,modifier);
+        qualityState = qualityState.updateQuality(item,modifier);
     }
 }

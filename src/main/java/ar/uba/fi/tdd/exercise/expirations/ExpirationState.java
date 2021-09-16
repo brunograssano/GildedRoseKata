@@ -3,10 +3,12 @@ package ar.uba.fi.tdd.exercise.expirations;
 import ar.uba.fi.tdd.exercise.Item;
 import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
-public interface ExpirationState {
+public abstract class ExpirationState {
 
-    ExpirationState updateDay(Item item);
+    protected QualityState qualityState;
 
-    QualityState updateQuality(Item item, QualityState qualityState);
+    abstract public ExpirationState updateDay(Item item);
+
+    abstract public void updateQuality(Item item);
 
 }
