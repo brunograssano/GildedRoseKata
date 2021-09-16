@@ -12,7 +12,7 @@ public class IncreasingQualityState implements QualityState {
         item.quality+=expirationModifier;
         if (item.quality >= MAX_QUALITY){
             item.quality = MAX_QUALITY;
-            return new PerfectQualityState();
+            return new ConstantQualityState();
         }
         return this;
     }

@@ -8,7 +8,7 @@ public class DecreasingQualityState implements QualityState {
         item.quality-=expirationModifier;
         if(item.quality <= 0){
             item.quality = 0;
-            return new HorribleQuality();
+            return new ConstantQualityState();
         }
         return this;
     }
