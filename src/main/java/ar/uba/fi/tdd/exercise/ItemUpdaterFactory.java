@@ -1,8 +1,6 @@
 package ar.uba.fi.tdd.exercise;
 
 
-
-
 public class ItemUpdaterFactory {
 
     static final String AGED_BRIE = "Aged Brie";

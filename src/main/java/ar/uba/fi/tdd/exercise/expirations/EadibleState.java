@@ -15,7 +15,7 @@ public class EadibleState extends ExpirationState {
     public ExpirationState updateDay(Item item){
         item.sellIn--;
         if(item.sellIn < DEADLINE){
-            return new NormalExpiredState(qualityState);
+            return new ExpiredState(qualityState);
         }
         return this;
     }

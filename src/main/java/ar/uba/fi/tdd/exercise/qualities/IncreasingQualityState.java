@@ -1,7 +1,6 @@
 package ar.uba.fi.tdd.exercise.qualities;
 
 import ar.uba.fi.tdd.exercise.Item;
-import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
 public class IncreasingQualityState implements QualityState {
 

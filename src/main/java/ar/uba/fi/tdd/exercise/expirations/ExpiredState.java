@@ -3,11 +3,11 @@ package ar.uba.fi.tdd.exercise.expirations;
 import ar.uba.fi.tdd.exercise.Item;
 import ar.uba.fi.tdd.exercise.qualities.QualityState;
 
-public class NormalExpiredState extends ExpirationState {
+public class ExpiredState extends ExpirationState {
 
     static final int NORMAL_EXPIRED_EFFECT = 2;
 
-    public NormalExpiredState(QualityState qualityState){
+    public ExpiredState(QualityState qualityState){
         this.qualityState = qualityState;
     }
 
